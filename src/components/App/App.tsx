@@ -7,13 +7,15 @@ import Main from "../Main/Main";
 export const App = () => {
   return (
     <UserContextProvider>
-      <Routes>
-        <Route path={"/login"} element={<Login />} />
-        <Route
-          path={"/"}
-          element={<Main render={(params: any) => ({ ...params })} />}
-        />
-      </Routes>
+      <div className="">
+        <Routes>
+          <Route path={"/login"} element={<Login />} />
+          <Route
+            path={"/"}
+            element={<Main render={(params: any) => ({ ...params })} />}
+          />
+        </Routes>
+      </div>
     </UserContextProvider>
   );
 };
