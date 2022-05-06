@@ -1,23 +1,16 @@
 import React, { createContext, ReactNode, useContext, useReducer } from "react";
+import { IContextProvider, UserContexType } from "../@types/contextType";
 import { IUser } from "../@types/userTypes";
 import { userReducer } from "./reducer/userReducer";
 
-interface ContextType {
-  state: IUser;
-  dispatch: React.Dispatch<any>;
-}
-
-interface IUserProvider {
-  children?: React.ReactNode;
-}
 const initialState = {
-  name: "",
   email: "",
   password: "",
-  accessToken: "",
+  user: JSON.parse(localStorage.getItem("user")!),
+  isLoggedIn: JSON.parse(localStorage.getItem("user")!) ? true : false,
 };
 
-const UserContext = createContext<ContextType | null>(null);
+const UserContext = createContext<UserContexType | null>(null);
 
 export const useUserContext = () => {
   const context = useContext(UserContext);
@@ -29,7 +22,9 @@ export const useUserContext = () => {
   return context;
 };
 
-export const UserContextProvider: React.FC<IUserProvider> = ({ children }) => {
+export const UserContextProvider: React.FC<IContextProvider> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   return (
