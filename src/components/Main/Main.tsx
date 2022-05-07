@@ -1,14 +1,19 @@
 import React from "react";
 import { IUser } from "../../@types/userTypes";
 import { RequireAuth } from "../../hoc/RequireAuth";
-import { Ticket } from "./Ticket/Ticket";
 import { TicketBoard } from "./TicketBoard/TicketBoard";
+import { Header } from "./../Header/Header";
 
 interface IMainProps {
-  user?: IUser;
+  user?: string;
 }
 export const Main: React.FC<IMainProps> = ({ user }) => {
-  return <TicketBoard />;
+  return (
+    <>
+      <Header user={user} />
+      <TicketBoard />
+    </>
+  );
 };
 
 export default RequireAuth(Main);

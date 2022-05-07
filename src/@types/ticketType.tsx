@@ -4,12 +4,15 @@ export enum TicketStatus {
   COMPLETED = "completed",
 }
 
+export interface TicketMetaData {
+  status: string;
+  created_at: Date | string;
+}
 export interface TicketModel {
   id: string | number;
   title: string;
   description: string;
-  status: string;
-  created_at: Date;
+  metadata: TicketMetaData;
 }
 
 export interface ILanes {
@@ -21,4 +24,10 @@ export interface ILanes {
 }
 export interface ILaneParent {
   lanes: ILanes[];
+}
+
+export interface ITicketForm {
+  title?: string;
+  description?: string;
+  metadata?: TicketMetaData;
 }

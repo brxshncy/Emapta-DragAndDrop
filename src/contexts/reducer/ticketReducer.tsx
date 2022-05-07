@@ -1,24 +1,27 @@
 import { TicketModel } from "../../@types/ticketType";
-import { ADD_TICKET, GET_TICKETS } from "../../constants/ticketActionConstants";
+import {
+  GET_TICKETS,
+  API_FETCHING,
+  DONE_LOAD,
+} from "../../constants/ticketActionConstants";
 import { IAction } from "./../../@types/contextType";
-import { BUILD_BOARD } from "./../../constants/ticketActionConstants";
-
 export const ticketReducer = (state: any, action: IAction) => {
   switch (action.type) {
-    case BUILD_BOARD:
+    case API_FETCHING:
       return {
         ...state,
-        tickets: action.tickets,
-        lanes: action.lanes,
+        loading: true,
       };
     case GET_TICKETS:
       return {
         ...state,
-        tickets: action.payload,
+        tickets: action.tickets,
       };
-      break;
-    case ADD_TICKET:
-      return;
+    case DONE_LOAD:
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }

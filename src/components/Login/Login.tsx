@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { ContextType, useState } from "react";
+import React, { useState } from "react";
 import { useUserContext } from "./../../contexts/UserContext";
 import { ILoginForm } from "./../../@types/loginForm";
 import { authService } from "./../../services/api/auth";
@@ -27,7 +26,7 @@ export const Login = () => {
   const handleLogin = async () => {
     const isAuthorized = authService.login(loginForm);
     if (isAuthorized) {
-      await AsyncStorage.setItem("user", JSON.stringify(loginForm)).then(() => {
+      await AsyncStorage.setItem("user", loginForm.email).then(() => {
         dispatch({
           type: LOG_IN,
           payload: loginForm,
@@ -38,12 +37,12 @@ export const Login = () => {
   };
 
   return (
-    <div className="container mx-auto my-auto flex justify-center items-center h-screen">
-      <div className="w-2/4 mx-auto flex justify-between flex-col bg-slate-300  border border-slate-200 rounded-md">
-        <div className="flex justify-center p-3 mt-3">
+    <div className="container mx-auto my-auto flex h-screen items-center justify-center">
+      <div className="mx-auto flex w-2/4 flex-col justify-between rounded-md  border border-slate-200 bg-slate-300">
+        <div className="mt-3 flex justify-center p-3">
           Login to your Account
         </div>
-        <div className="flex justify-between flex-col p-5">
+        <div className="flex flex-col justify-between p-5">
           <input
             type="text"
             placeholder="Enter Email"
@@ -62,7 +61,7 @@ export const Login = () => {
           />
           <button
             onClick={handleLogin}
-            className="border p-1 rounded-md border-slate-500"
+            className="rounded-md border border-slate-500 p-1"
           >
             Login
           </button>

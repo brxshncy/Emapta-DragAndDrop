@@ -1,12 +1,14 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { IContextProvider, ITicketContext } from "../@types/contextType";
-import { tickets } from "../mock-data/ticket-data.mock";
+// import { tickets } from "../mock-data/ticket-data.mock";
 import { ticketReducer } from "./reducer/ticketReducer";
-import { lanes } from "./../mock-data/ticket-data.mock";
+// import { lanes } from "./../mock-data/ticket-data.mock";
+// import { resetStorage } from "../util/resetStorage";
 
 const initialState = {
   tickets: [],
-  lanes: [],
+  columns: [],
+  loading: false,
 };
 const TicketContext = createContext<ITicketContext | null>(null);
 
@@ -26,13 +28,6 @@ export const TicketContextProvider: React.FC<IContextProvider> = ({
   children,
 }) => {
   const [ticketState, ticketDispatch] = useReducer(ticketReducer, initialState);
-
-  useEffect(() => {
-    (function () {
-      localStorage.setItem("tickets", JSON.stringify(tickets));
-      localStorage.setItem("lanes", JSON.stringify(lanes));
-    })();
-  }, []);
 
   return (
     <TicketContext.Provider value={{ ticketState, ticketDispatch }}>

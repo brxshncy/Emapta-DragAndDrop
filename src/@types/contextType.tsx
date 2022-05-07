@@ -1,3 +1,4 @@
+import { IModal } from "./modalType";
 import { ILaneParent, TicketModel } from "./ticketType";
 import { IUser } from "./userTypes";
 
@@ -12,9 +13,9 @@ export interface IContextProvider {
 
 export interface IAction {
   type: string;
-  payload: any;
-  tickets: [];
-  lanes: [];
+  payload?: any;
+  tickets?: [];
+  lanes?: [];
 }
 
 export interface ITicketContext {
@@ -22,6 +23,11 @@ export interface ITicketContext {
   ticketDispatch: React.Dispatch<any>;
 }
 
+export interface IModalContext {
+  modalState?: IModal;
+  modalDispatch: React.Dispatch<any>;
+  toggleModal: () => void;
+}
 export interface ITicketContextState {
   tickets: TicketModel[];
   lanes: ILaneParent;

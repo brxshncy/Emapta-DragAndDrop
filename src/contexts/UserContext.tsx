@@ -1,13 +1,10 @@
-import React, { createContext, ReactNode, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { IContextProvider, UserContexType } from "../@types/contextType";
-import { IUser } from "../@types/userTypes";
 import { userReducer } from "./reducer/userReducer";
 
 const initialState = {
-  email: "",
-  password: "",
-  user: JSON.parse(localStorage.getItem("user")!),
-  isLoggedIn: JSON.parse(localStorage.getItem("user")!) ? true : false,
+  user: localStorage.getItem("user"),
+  isLoggedIn: localStorage.getItem("user")! ? true : false,
 };
 
 const UserContext = createContext<UserContexType | null>(null);
