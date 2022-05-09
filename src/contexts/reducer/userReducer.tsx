@@ -1,4 +1,3 @@
-import { Reducer } from "react";
 import { IUser } from "../../@types/userTypes";
 import { LOG_IN } from "../../constants/userActionConstants";
 import { IAction } from "./../../@types/contextType";

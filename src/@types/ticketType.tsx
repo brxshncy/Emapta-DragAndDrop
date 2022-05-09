@@ -22,6 +22,7 @@ export interface ILanes {
   title: string;
   label: string;
   cards: TicketModel[];
+  style?: any;
   editable?: boolean;
 }
 export interface ILaneParent {

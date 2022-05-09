@@ -15,7 +15,7 @@ export const App = () => {
     <ModalContextProvider>
       <UserContextProvider>
         <TicketContextProvider>
-          <div className="min-h-screen bg-gray-100">
+          <div className="min-h-screen bg-zinc-100">
             <Routes>
               <Route path={"/login"} element={<Login />} />
               <Route

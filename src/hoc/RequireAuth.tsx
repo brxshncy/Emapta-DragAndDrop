@@ -11,9 +11,9 @@ export const RequireAuth = (Component: ComponentType) => (props: any) => {
 
     if (isLoggedIn) {
       return (
-        <div className="h-screen bg-blue-500 ">
+        <div className="h-screen bg-zinc-100">
           <Header user={user} />
-          <div className="px-10 py-5">
+          <div className="bg-zinc-100 px-10 py-5">
             <Component {...props} user={user} />
           </div>
         </div>

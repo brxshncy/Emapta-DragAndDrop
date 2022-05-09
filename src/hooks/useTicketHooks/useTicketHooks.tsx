@@ -1,4 +1,3 @@
-import React from "react";
 import { ITicketContext } from "../../@types/contextType";
 import { ILaneParent, ITicketForm } from "../../@types/ticketType";
 import {
@@ -20,10 +19,11 @@ export const useTicketHooks = () => {
         id: "open",
         title: "Open",
         label: "1/3",
+        style: { background: "#fff" },
         cards:
           tickets?.length > 0
             ? tickets.filter(
-                (ticket: TicketModel) => ticket.metadata.status == "open"
+                (ticket: TicketModel) => ticket.metadata.status === "open"
               )
             : [],
       },
@@ -31,10 +31,11 @@ export const useTicketHooks = () => {
         id: "inProgress",
         title: "In-progress",
         label: "2/3",
+        style: { background: "#fff" },
         cards:
           tickets?.length > 0
             ? tickets.filter(
-                (ticket: TicketModel) => ticket.metadata.status == "inProgress"
+                (ticket: TicketModel) => ticket.metadata.status === "inProgress"
               )
             : [],
       },
@@ -42,10 +43,11 @@ export const useTicketHooks = () => {
         id: "completed",
         title: "Completed",
         label: "3/3",
+        style: { background: "#fff" },
         cards:
           tickets?.length > 0
             ? tickets.filter(
-                (ticket: TicketModel) => ticket.metadata.status == "completed"
+                (ticket: TicketModel) => ticket.metadata.status === "completed"
               )
             : [],
       },

@@ -28,13 +28,16 @@ export const TicketBoard = () => {
     <>
       <button
         className="
-          mr-1 mb-1 ml-2 flex 
-        items-center justify-between rounded  
-          bg-blue-200 px-6 py-1 
-          text-black shadow
-          outline-none hover:shadow-lg
-          focus:outline-none
-           active:bg-blue-900"
+        mr-1 mb-1 ml-2 
+        flex  items-center justify-between
+        rounded  
+        bg-green-600 
+        px-5 
+        py-1 text-white 
+        shadow outline-none
+        hover:bg-green-700 
+        hover:shadow-lg
+        focus:outline-none"
         type="button"
         onClick={toggleModal}
         disabled={loading}
@@ -51,7 +54,7 @@ export const TicketBoard = () => {
           onCardAdd={onCardAdd}
           onCardClick={onCardClick}
           handleDragEnd={handleDragEnd}
-          style={{ background: "#3b82f6" }}
+          style={{ background: "#f4f4f5" }}
         />
       ) : (
         <>No Cards added.</>

@@ -13,7 +13,7 @@ export const Header: React.FC<IHeaderProps> = ({ user }) => {
     navigate("/login");
   };
   return (
-    <div className="flex justify-end bg-blue-900 p-5 text-white">
+    <div className="border-b-1 flex justify-end  bg-white p-5 text-slate-900 shadow-sm ">
       {user}
       <div className="ml-5">
         <a

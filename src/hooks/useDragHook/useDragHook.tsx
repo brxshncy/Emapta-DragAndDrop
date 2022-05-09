@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTicketHooks } from "./../useTicketHooks/useTicketHooks";
 
@@ -18,7 +17,7 @@ export const useDragHook = () => {
     position: any,
     cardDetails: string
   ) => {
-    if (sourceLaneId == "completed" && targetLaneId == "inProgress") {
+    if (sourceLaneId === "completed" && targetLaneId === "inProgress") {
       return false;
     }
 

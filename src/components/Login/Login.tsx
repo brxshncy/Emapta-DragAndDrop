@@ -41,7 +41,7 @@ export const Login = () => {
 
   return (
     <div className="container mx-auto my-auto flex h-screen  items-center justify-center">
-      <div className="mx-auto flex w-400 flex-col justify-between  rounded-md border border-slate-200 bg-slate-300">
+      <div className="mx-auto flex w-400 flex-col justify-between  rounded-md border bg-white shadow-sm">
         <div className="mt-3 flex justify-center p-3">
           Login to your Account
         </div>
@@ -49,7 +49,7 @@ export const Login = () => {
           <input
             type="text"
             placeholder="Enter Email"
-            className="mb-3 p-2"
+            className="mb-3 rounded border p-2 shadow-sm"
             onChange={(e) => inputHandler(e.target.name, e.target.value)}
             name="email"
             value={loginForm.email}
@@ -57,7 +57,7 @@ export const Login = () => {
           <input
             type="password"
             placeholder="Enter Password"
-            className="mb-3 p-2"
+            className="mb-3 border p-2 shadow-sm"
             onChange={(e) => inputHandler(e.target.name, e.target.value)}
             name="password"
             value={loginForm.password}
@@ -69,7 +69,7 @@ export const Login = () => {
           )}
           <button
             onClick={handleLogin}
-            className="rounded-md border border-slate-500 p-1"
+            className="mt-2 rounded-md border  bg-green-600 p-1 text-white hover:bg-green-700 "
           >
             Login
           </button>

@@ -79,7 +79,7 @@ const Details = () => {
   };
 
   return (
-    <div className="mx-auto min-h-300 w-600 rounded bg-slate-50 px-10 py-5 pt-10">
+    <div className="mx-auto min-h-300 w-600 rounded bg-white px-10 py-5 pt-10 shadow-md">
       {loading ? (
         <PageIndicator />
       ) : (
