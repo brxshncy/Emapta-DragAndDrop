@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUserContext } from "./../../contexts/UserContext";
 import { ILoginForm } from "./../../@types/loginForm";
 import { authService } from "./../../services/api/auth";
@@ -15,7 +15,7 @@ export const Login = () => {
   });
   const [invalidCredentials, setInvalidCredentials] = useState<boolean>(false);
 
-  const { dispatch } = useUserContext() as UserContexType;
+  const { state, dispatch } = useUserContext() as UserContexType;
 
   const inputHandler = (key: string, value: string) => {
     setLoginForm({
@@ -23,6 +23,12 @@ export const Login = () => {
       [key]: value,
     });
   };
+
+  useEffect(() => {
+    if (state?.isLoggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   const handleLogin = async () => {
     const isAuthorized = authService.login(loginForm);
