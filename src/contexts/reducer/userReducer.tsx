@@ -1,5 +1,5 @@
 import { IUser } from "../../@types/userTypes";
-import { LOG_IN } from "../../constants/userActionConstants";
+import { LOG_IN, LOG_OUT } from "../../constants/userActionConstants";
 import { IAction } from "./../../@types/contextType";
 
 export const userReducer = (state: IUser, action: IAction) => {
@@ -9,6 +9,12 @@ export const userReducer = (state: IUser, action: IAction) => {
         ...state,
         isLoggedIn: true,
         user: action.payload.email,
+      };
+      break;
+    case LOG_OUT:
+      return {
+        ...state,
+        isLoggedIn: false,
       };
       break;
     default:
