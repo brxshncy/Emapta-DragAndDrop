@@ -30,7 +30,8 @@ export const Login = () => {
     }
   }, []);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const isAuthorized = authService.login(loginForm);
     if (isAuthorized) {
       setInvalidCredentials(false);
@@ -47,7 +48,10 @@ export const Login = () => {
 
   return (
     <div className="container mx-auto my-auto flex h-screen  items-center justify-center">
-      <div className="mx-auto flex w-400 flex-col justify-between  rounded-md border bg-white shadow-sm">
+      <form
+        onSubmit={(e) => handleLogin(e)}
+        className="mx-auto flex w-400 flex-col justify-between  rounded-md border bg-white shadow-sm"
+      >
         <div className="mt-3 flex justify-center p-3">
           Login to your Account
         </div>
@@ -74,13 +78,13 @@ export const Login = () => {
             </span>
           )}
           <button
-            onClick={handleLogin}
+            type="submit"
             className="mt-2 rounded-md border  bg-green-600 p-1 text-white hover:bg-green-700 "
           >
             Login
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
