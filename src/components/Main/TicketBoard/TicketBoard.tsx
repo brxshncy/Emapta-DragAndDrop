@@ -7,52 +7,57 @@ import { useTicketContext } from "./../../../contexts/TicketContext";
 import { useModal } from "./../../../contexts/ModalContextProvider";
 import Modal from "../../ui/modal/Modal";
 import { CreateTicket } from "./../CreateTicket/CreateTicket";
-import { LoadingIndicator } from "../../ui/loading-indicator/LoadingIndicator";
+import { AppLoadingIndicator } from "../../ui/loading-indicator/AppLoadingIndicator";
+import { LoadingSpinner } from "./../../ui/svg/LoadingSpinner";
 
 export const TicketBoard = () => {
+  // context
   const { ticketState } = useTicketContext() as ITicketContext;
+  // customer hooks
   const { onCardAdd, onCardClick, handleDragEnd } = useDragHook();
-  const { columns, loading } = ticketState as any;
   const { getTickets, boardColumn } = useTicketHooks();
   const { toggleModal } = useModal() as IModalContext;
+
+  const { columns, loading } = ticketState as any;
 
   useEffect(() => {
     getTickets();
   }, []);
 
-  columns.lanes?.length > 0 && console.log(columns.lanes[1]);
-
   return (
     <>
-      <div className="bg-blue-500 px-10 py-5">
-        <button
-          className="
-          mr-1 mb-1 ml-2 rounded 
-        bg-blue-200 px-6 py-1  
-          text-black shadow outline-none 
-          hover:shadow-lg focus:outline-none
+      <button
+        className="
+          mr-1 mb-1 ml-2 flex 
+        items-center justify-between rounded  
+          bg-blue-200 px-6 py-1 
+          text-black shadow
+          outline-none hover:shadow-lg
+          focus:outline-none
            active:bg-blue-900"
-          type="button"
-          onClick={toggleModal}
-          disabled={loading}
-        >
-          Create New Ticket
-        </button>
-        {loading && <LoadingIndicator />}
-        {boardColumn.lanes?.length > 0 ? (
-          <Board
-            data={boardColumn}
-            onCardAdd={onCardAdd}
-            onCardClick={onCardClick}
-            handleDragEnd={handleDragEnd}
-            style={{ background: "#3b82f6" }}
-          />
-        ) : (
-          <>No Cards added.</>
-        )}
+        type="button"
+        onClick={toggleModal}
+        disabled={loading}
+      >
+        {loading && <LoadingSpinner height={"h-4"} width={"w-4"} />}
+        Create New Ticket
+      </button>
 
-        <Modal body={<CreateTicket toggleModal={toggleModal} />} />
-      </div>
+      {loading && <AppLoadingIndicator />}
+
+      {boardColumn.lanes?.length > 0 ? (
+        <Board
+          data={boardColumn}
+          onCardAdd={onCardAdd}
+          onCardClick={onCardClick}
+          handleDragEnd={handleDragEnd}
+          style={{ background: "#3b82f6" }}
+        />
+      ) : (
+        <>No Cards added.</>
+      )}
+
+      <Modal body={<CreateTicket toggleModal={toggleModal} />} />
     </>
   );
 };

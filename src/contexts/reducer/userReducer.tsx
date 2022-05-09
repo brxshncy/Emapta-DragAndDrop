@@ -9,7 +9,7 @@ export const userReducer = (state: IUser, action: IAction) => {
       return {
         ...state,
         isLoggedIn: true,
-        user: action.payload,
+        user: action.payload.email,
       };
       break;
     default:

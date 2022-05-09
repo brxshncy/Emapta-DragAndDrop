@@ -12,6 +12,7 @@ import { TicketModel } from "./../../@types/ticketType";
 
 export const useTicketHooks = () => {
   const { ticketState, ticketDispatch } = useTicketContext() as ITicketContext;
+
   const { tickets } = ticketState as any;
   const boardColumn: ILaneParent = {
     lanes: [
@@ -51,8 +52,13 @@ export const useTicketHooks = () => {
     ],
   };
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  const delay = () => {
+    const randomDelay = [1000, 2000];
+    const delayIndex = Math.floor(Math.random() * randomDelay.length);
+    return new Promise((resolve) =>
+      setTimeout(resolve, randomDelay[delayIndex])
+    );
+  };
 
   const getTickets = async () => {
     ticketDispatch({
@@ -60,7 +66,7 @@ export const useTicketHooks = () => {
     });
     try {
       const tickets = await JSON.parse(localStorage.getItem("tickets")!);
-      await delay(1000);
+      await delay();
       ticketDispatch({
         type: GET_TICKETS,
         tickets: tickets !== null ? tickets : [],

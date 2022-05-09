@@ -13,6 +13,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
+  const [invalidCredentials, setInvalidCredentials] = useState<boolean>(false);
 
   const { dispatch } = useUserContext() as UserContexType;
 
@@ -26,6 +27,7 @@ export const Login = () => {
   const handleLogin = async () => {
     const isAuthorized = authService.login(loginForm);
     if (isAuthorized) {
+      setInvalidCredentials(false);
       await AsyncStorage.setItem("user", loginForm.email).then(() => {
         dispatch({
           type: LOG_IN,
@@ -34,11 +36,12 @@ export const Login = () => {
         navigate("/");
       });
     }
+    setInvalidCredentials(true);
   };
 
   return (
-    <div className="container mx-auto my-auto flex h-screen items-center justify-center">
-      <div className="mx-auto flex w-2/4 flex-col justify-between rounded-md  border border-slate-200 bg-slate-300">
+    <div className="container mx-auto my-auto flex h-screen  items-center justify-center">
+      <div className="mx-auto flex w-400 flex-col justify-between  rounded-md border border-slate-200 bg-slate-300">
         <div className="mt-3 flex justify-center p-3">
           Login to your Account
         </div>
@@ -59,6 +62,11 @@ export const Login = () => {
             name="password"
             value={loginForm.password}
           />
+          {invalidCredentials && (
+            <span className="mb-3 w-full rounded bg-red-400 p-2 text-center">
+              Invalid Email and password combination
+            </span>
+          )}
           <button
             onClick={handleLogin}
             className="rounded-md border border-slate-500 p-1"

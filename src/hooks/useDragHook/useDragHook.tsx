@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useTicketHooks } from "./../useTicketHooks/useTicketHooks";
 
 export const useDragHook = () => {
   const onCardAdd = () => {};
   const { updateTicket } = useTicketHooks();
+  const navigate = useNavigate();
+
   const onCardClick = (cardId: string, metadata: any, laneId: string) => {
-    console.log("cardId", cardId);
+    navigate(`/ticket/${cardId}`);
   };
 
   const handleDragEnd = (
@@ -15,12 +18,10 @@ export const useDragHook = () => {
     position: any,
     cardDetails: string
   ) => {
-    // console.log("cardId", cardId);
-    // console.log("moved from", sourceLaneId);
-    // console.log("moved to", targetLaneId);
     if (sourceLaneId == "completed" && targetLaneId == "inProgress") {
       return false;
     }
+
     updateTicket(cardId, targetLaneId);
   };
 

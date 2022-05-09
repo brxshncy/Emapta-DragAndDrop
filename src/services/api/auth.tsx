@@ -8,4 +8,7 @@ export const authService = {
     const { email, password } = payload;
     return email === authorizedEmail && password === authorizedPassword;
   },
+  logout: () => {
+    localStorage.removeItem("user");
+  },
 };

@@ -15,7 +15,6 @@ export interface IAction {
   type: string;
   payload?: any;
   tickets?: [];
-  lanes?: [];
 }
 
 export interface ITicketContext {
@@ -30,5 +29,4 @@ export interface IModalContext {
 }
 export interface ITicketContextState {
   tickets: TicketModel[];
-  lanes: ILaneParent;
 }

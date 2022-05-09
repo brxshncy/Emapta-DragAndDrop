@@ -8,6 +8,7 @@ import { ticketReducer } from "./reducer/ticketReducer";
 const initialState = {
   tickets: [],
   columns: [],
+  ticket: {},
   loading: false,
 };
 const TicketContext = createContext<ITicketContext | null>(null);

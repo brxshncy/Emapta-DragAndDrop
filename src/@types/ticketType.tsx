@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export enum TicketStatus {
   OPEN = "open",
   IN_PROGRESS = "in_progress",
@@ -6,7 +8,7 @@ export enum TicketStatus {
 
 export interface TicketMetaData {
   status: string;
-  created_at: Date | string;
+  created_at: Date | string | any;
 }
 export interface TicketModel {
   id: string | number;
