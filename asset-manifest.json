@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Emapta-DragAndDrop/static/css/main.dece5e7e.css",
-    "main.js": "/Emapta-DragAndDrop/static/js/main.2e0aca18.js",
+    "main.js": "/Emapta-DragAndDrop/static/js/main.146156e4.js",
     "static/js/787.d6037ebb.chunk.js": "/Emapta-DragAndDrop/static/js/787.d6037ebb.chunk.js",
     "index.html": "/Emapta-DragAndDrop/index.html",
     "main.dece5e7e.css.map": "/Emapta-DragAndDrop/static/css/main.dece5e7e.css.map",
-    "main.2e0aca18.js.map": "/Emapta-DragAndDrop/static/js/main.2e0aca18.js.map",
+    "main.146156e4.js.map": "/Emapta-DragAndDrop/static/js/main.146156e4.js.map",
     "787.d6037ebb.chunk.js.map": "/Emapta-DragAndDrop/static/js/787.d6037ebb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dece5e7e.css",
-    "static/js/main.2e0aca18.js"
+    "static/js/main.146156e4.js"
   ]
 }
