@@ -1,31 +1,31 @@
 import { useNavigate } from "react-router-dom";
+import { TicketService } from "../../services/api/ticket";
 import { useTicketHooks } from "./../useTicketHooks/useTicketHooks";
+import { useTicketContext } from "./../../contexts/TicketContext";
+import { ITicketContext } from "../../@types/contextType";
 
 export const useDragHook = () => {
-  const onCardAdd = () => {};
-  const { updateTicket } = useTicketHooks();
+  const { ticketState, ticketDispatch } = useTicketContext() as ITicketContext;
+  const { tickets } = ticketState as any;
   const navigate = useNavigate();
 
-  const onCardClick = (cardId: string, metadata: any, laneId: string) => {
+  const onCardClick = (cardId: string) => {
     navigate(`/ticket/${cardId}`);
   };
 
   const handleDragEnd = (
     cardId: string,
     sourceLaneId: string,
-    targetLaneId: string,
-    position: any,
-    cardDetails: string
+    targetLaneId: string
   ) => {
     if (sourceLaneId === "completed" && targetLaneId === "inProgress") {
       return false;
     }
 
-    updateTicket(cardId, targetLaneId);
+    TicketService.updateTicket(cardId, targetLaneId, tickets, ticketDispatch);
   };
 
   return {
-    onCardAdd,
     onCardClick,
     handleDragEnd,
   };

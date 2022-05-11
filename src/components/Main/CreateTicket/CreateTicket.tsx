@@ -1,14 +1,21 @@
 import React, { useCallback, useState } from "react";
 import { IUseForm } from "../../../@types/hookType";
-import { ITicketForm } from "../../../@types/ticketType";
+import { ITicketForm, TicketModel } from "../../../@types/ticketType";
 import { useTicketHooks } from "../../../hooks/useTicketHooks/useTicketHooks";
 import { Form } from "../../ui/form/Form";
 import { useForm } from "./../../../hooks/useForm/useForm";
+import { TicketService } from "./../../../services/api/ticket";
 
 interface ICreateTicketProps {
   toggleModal: () => void;
+  tickets: TicketModel[];
+  ticketDispatch: React.Dispatch<any>;
 }
-export const CreateTicket: React.FC<ICreateTicketProps> = ({ toggleModal }) => {
+export const CreateTicket: React.FC<ICreateTicketProps> = ({
+  toggleModal,
+  tickets,
+  ticketDispatch,
+}) => {
   const { ticketForm, inputHandler } = useForm({
     title: "",
     description: "",
@@ -18,10 +25,8 @@ export const CreateTicket: React.FC<ICreateTicketProps> = ({ toggleModal }) => {
     },
   });
 
-  const { createTicket } = useTicketHooks();
-
   const handleSubmitTicket = () => {
-    createTicket(ticketForm);
+    TicketService.createTicket(ticketForm, tickets, ticketDispatch);
     toggleModal();
   };
 
