@@ -11,6 +11,7 @@ import { DetailTickets } from "./DetailTickets";
 import { useForm } from "./../../hooks/useForm/useForm";
 import { TicketModel } from "./../../@types/ticketType";
 import { AsyncStorage } from "../../services/storage/async-storage";
+import { TicketService } from "../../services/api/ticket";
 
 const Details = () => {
   // react hook
@@ -19,15 +20,13 @@ const Details = () => {
   // react-router
   const { ticketid } = useParams();
   const navigate = useNavigate();
-  // custhom hooks
-  const { getTickets } = useTicketHooks();
 
   const { tickets, ticket, loading } = ticketState as any;
 
   const { inputHandler, setTicketForm, ticketForm } = useForm(null);
 
   useEffect(() => {
-    getTickets();
+    TicketService.getTickets(ticketDispatch);
   }, []);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const Details = () => {
 
   const toggleEdit = () => setIsEditable((isEditable) => !isEditable);
 
-  const update = async () => {
+  const updateTicketDetails = async () => {
     try {
       const updateTickets = tickets.map((tick: TicketModel) => {
         if (tick.id === ticketid) {
@@ -69,7 +68,7 @@ const Details = () => {
       });
       await AsyncStorage.setItem("tickets", JSON.stringify(updateTickets)).then(
         () => {
-          getTickets();
+          TicketService.getTickets(ticketDispatch);
           toggleEdit();
         }
       );
@@ -99,7 +98,9 @@ const Details = () => {
             </button>
 
             <button
-              onClick={() => (isEditable ? update() : toggleEdit())}
+              onClick={() =>
+                isEditable ? updateTicketDetails() : toggleEdit()
+              }
               className={`rounded bg-green-600 px-5 py-1  text-white hover:bg-green-700`}
             >
               {isEditable ? "Update" : "Edit"}

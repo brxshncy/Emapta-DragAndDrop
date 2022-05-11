@@ -9,19 +9,20 @@ import Modal from "../../ui/modal/Modal";
 import { CreateTicket } from "./../CreateTicket/CreateTicket";
 import { AppLoadingIndicator } from "../../ui/loading-indicator/AppLoadingIndicator";
 import { LoadingSpinner } from "./../../ui/svg/LoadingSpinner";
+import { TicketService } from "./../../../services/api/ticket";
 
 export const TicketBoard = () => {
   // context
-  const { ticketState } = useTicketContext() as ITicketContext;
+  const { ticketState, ticketDispatch } = useTicketContext() as ITicketContext;
   // customer hooks
-  const { onCardAdd, onCardClick, handleDragEnd } = useDragHook();
-  const { getTickets, boardColumn } = useTicketHooks();
+  const { onCardClick, handleDragEnd } = useDragHook();
+  const { boardColumn } = useTicketHooks();
   const { toggleModal } = useModal() as IModalContext;
 
-  const { columns, loading } = ticketState as any;
+  const { loading, tickets } = ticketState as any;
 
   useEffect(() => {
-    getTickets();
+    TicketService.getTickets(ticketDispatch);
   }, []);
 
   return (
@@ -51,7 +52,6 @@ export const TicketBoard = () => {
       {boardColumn.lanes?.length > 0 ? (
         <Board
           data={boardColumn}
-          onCardAdd={onCardAdd}
           onCardClick={onCardClick}
           handleDragEnd={handleDragEnd}
           style={{ background: "#f4f4f5" }}
@@ -60,7 +60,15 @@ export const TicketBoard = () => {
         <>No Cards added.</>
       )}
 
-      <Modal body={<CreateTicket toggleModal={toggleModal} />} />
+      <Modal
+        body={
+          <CreateTicket
+            toggleModal={toggleModal}
+            tickets={tickets}
+            ticketDispatch={ticketDispatch}
+          />
+        }
+      />
     </>
   );
 };
