@@ -1,9 +1,6 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { IContextProvider, ITicketContext } from "../@types/contextType";
-// import { tickets } from "../mock-data/ticket-data.mock";
 import { ticketReducer } from "./reducer/ticketReducer";
-// import { lanes } from "./../mock-data/ticket-data.mock";
-// import { resetStorage } from "../util/resetStorage";
 
 const initialState = {
   tickets: [],

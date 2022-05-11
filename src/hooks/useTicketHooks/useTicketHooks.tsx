@@ -1,18 +1,10 @@
 import { ITicketContext } from "../../@types/contextType";
-import { ILaneParent, ITicketForm } from "../../@types/ticketType";
-import {
-  API_FETCHING,
-  DONE_LOAD,
-  GET_TICKETS,
-} from "../../constants/ticketActionConstants";
+import { ILaneParent } from "../../@types/ticketType";
 import { useTicketContext } from "../../contexts/TicketContext";
-import { TicketService } from "../../services/api/ticket";
-import { AsyncStorage } from "../../services/storage/async-storage";
 import { TicketModel } from "./../../@types/ticketType";
-import { delay } from "./../../util/mock-delay";
 
 export const useTicketHooks = () => {
-  const { ticketState, ticketDispatch } = useTicketContext() as ITicketContext;
+  const { ticketState } = useTicketContext() as ITicketContext;
 
   const { tickets } = ticketState as any;
 

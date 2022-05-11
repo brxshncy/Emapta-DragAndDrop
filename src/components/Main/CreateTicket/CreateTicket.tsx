@@ -1,7 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { IUseForm } from "../../../@types/hookType";
-import { ITicketForm, TicketModel } from "../../../@types/ticketType";
-import { useTicketHooks } from "../../../hooks/useTicketHooks/useTicketHooks";
+import React from "react";
+import { TicketModel } from "../../../@types/ticketType";
 import { Form } from "../../ui/form/Form";
 import { useForm } from "./../../../hooks/useForm/useForm";
 import { TicketService } from "./../../../services/api/ticket";

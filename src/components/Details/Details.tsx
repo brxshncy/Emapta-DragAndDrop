@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ITicketContext } from "../../@types/contextType";
 import { SHOW_TICKET } from "../../constants/ticketActionConstants";
 import { RequireAuth } from "../../hoc/RequireAuth";
-import { useTicketHooks } from "../../hooks/useTicketHooks/useTicketHooks";
 import { Form } from "../ui/form/Form";
 import { useTicketContext } from "./../../contexts/TicketContext";
 import { PageIndicator } from "./../ui/loading-indicator/PageIndicator";

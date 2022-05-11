@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { TicketService } from "../../services/api/ticket";
-import { useTicketHooks } from "./../useTicketHooks/useTicketHooks";
 import { useTicketContext } from "./../../contexts/TicketContext";
 import { ITicketContext } from "../../@types/contextType";
 
